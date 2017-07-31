@@ -5,12 +5,15 @@
   "main": "index.js",
   "directories": {},
   "dependencies": {
+    "body-parser": "~1.0.1",
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1"
+    "redis": "^2.7.1",
+    "redis-server": "^1.1.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "redis-server": "node redis-server.js"
   },
   "repository": {
     "type": "git",
