@@ -1,0 +1,41 @@
+{
+  "name": "catstagram",
+  "version": "0.0.0",
+  "description": "Instagram like backend for a client on UpWork, focused at users and their cats.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^4.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StormBurpee/catstagram.git"
+  },
+  "keywords": [
+    "Instagram",
+    "Redis",
+    "Restful",
+    "API",
+    "REST",
+    "Api",
+    "Backend",
+    "UpWork",
+    "Cats"
+  ],
+  "author": "Storm Burpee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StormBurpee/catstagram/issues"
+  },
+  "homepage": "https://github.com/StormBurpee/catstagram#readme"
+}
