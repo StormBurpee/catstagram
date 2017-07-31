@@ -3,13 +3,14 @@
   "version": "0.1.1",
   "description": "Instagram like backend for a client on UpWork, focused at users and their cats.",
   "main": "index.js",
-  "directories": {
-  },
+  "directories": {},
   "dependencies": {
-
+    "express": "~4.0.0",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1"
   },
   "scripts": {
-
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
