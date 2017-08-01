@@ -5,7 +5,6 @@ class User extends Model {
 
   constructor(rClient) {
     super(rClient);
-    this.rClient = rClient;
     this.email = "";
     this.username = "";
     this.password = "";
@@ -15,14 +14,13 @@ class User extends Model {
     return new Promise((resolve, reject) => {
       let user = this;
       this.checkIfModelExists("user:"+this.username).then(function(resp){
-        console.log(resp);
         if(resp == null) {
           user.saveModel("user:"+user.username, {
-            "username": user.username,
-            "email": user.email
+            "username":   user.username,
+            "email":      user.email
           });
           user.saveModel("userpassword:"+user.username, {
-            "password": user.password
+            "password":   user.password
           });
           resolve( 1 );
         }''

@@ -70,6 +70,10 @@ router.post("/user/login", function(request, response) {
   }
 });
 
+router.post("/user/:username/addcat", function(request, response) {
+
+});
+
 //Send routers on /api to router
 app.use('/api', router);
 
