@@ -26,6 +26,15 @@ router.get('/setupRedis', function(request, response) {
   response.json({message: "Successfuly setup Redis"});
 });
 
+router.get('/checkRedis', function(request, response) {
+    /*rClient.exists('catstagram', function(error, reply) {
+      if(reply == 1)
+        response.json({message: "Catstagram Database Exists"});
+      else
+        response.json({message: "Catstagram Database Doesn't Exist"});
+    });*/
+});
+
 router.get("/getRedis", function(request, response){
   rClient.hgetall('catstagram', function(err, object) {
     response.json({message: object});
