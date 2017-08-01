@@ -1,10 +1,11 @@
-exports.Model = class {
+class Model {
     constructor(rClient) {
       this.rClient = rClient;
     }
 
     saveModel(key, model) {
       this.rClient.hmset(key, model);
+      console.log("creating model " + key + " with values: ", model);
     }
     deleteModel() {}
 
@@ -24,3 +25,5 @@ exports.Model = class {
       return 0; // Model doesn't exist.
     }
 }
+
+module.exports = Model;
