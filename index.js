@@ -3,9 +3,13 @@ var app             = express();
 var bodyParser      = require('body-parser');
 var packageDetails  = require('./package.json');
 var redis           = require('redis');
+var bluebird        = require('bluebird');
 
 var Model           = require('./app/models/model');
 var User            = require('./app/models/User/user');
+
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -40,8 +44,9 @@ router.get("/users/all", function(request, response) {
 router.post("/users", function(request, response) {
   let user = new User(rClient);
   if(request.body.email && request.body.username && request.body.password){
-    let uResp = user.registerUser(request.body.email, request.body.username, request.body.password);
-    response.json({message: uResp});
+    user.registerUser(request.body.email, request.body.username, request.body.password).then(function(resp){
+      response.json({message: resp});
+    });
   }
   else {
     response.json({message: "Please supply username, email and password.", error: 1});
@@ -50,7 +55,9 @@ router.post("/users", function(request, response) {
 
 router.get("/user/:username", function(request, response) {
   let user = new User(rClient);
-  response.json(user.findUser(request.params.username));
+  user.findUser(request.params.username).then(function(resp) {
+    response.json({user: resp});
+  });
 });
 
 //Send routers on /api to router
