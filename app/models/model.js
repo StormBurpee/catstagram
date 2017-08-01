@@ -1,11 +1,15 @@
+var redis = require('redis');
 class Model {
     constructor(rClient) {
       this.rClient = rClient;
     }
 
     saveModel(key, model) {
-      this.rClient.hmset(key, model);
-      console.log("creating model " + key + " with values: ", model);
+      console.log("creating model " + key);
+      this.rClient.hmset(key, model, function(err, response) {
+        console.log(response, {error: err});
+      });
+      console.log(this.rClient.server_info);
     }
     deleteModel() {}
 

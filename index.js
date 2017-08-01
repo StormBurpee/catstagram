@@ -39,8 +39,10 @@ router.get("/users/all", function(request, response) {
 
 router.post("/users", function(request, response) {
   let user = new User(rClient);
-  if(request.body.email && request.body.username && request.body.password)
-    response.json({message: user.registerUser(request.body.email, request.body.username, request.body.password)});
+  if(request.body.email && request.body.username && request.body.password){
+    let uResp = user.registerUser(request.body.email, request.body.username, request.body.password);
+    response.json({message: uResp});
+  }
   else {
     response.json({message: "Please supply username, email and password.", error: 1});
   }

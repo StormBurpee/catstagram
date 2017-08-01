@@ -4,6 +4,7 @@ class User extends Model {
 
   constructor(rClient) {
     super(rClient);
+    this.rClient = rClient;
     this.email = "";
     this.username = "";
     this.password = "";
