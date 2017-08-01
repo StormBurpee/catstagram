@@ -18,6 +18,8 @@ var port      = process.env.PORT || 8080;
 var rPort = 6379;
 var rClient   = redis.createClient(rPort, "127.0.0.1");
 
+var user = new User(rClient);
+
 rClient.hmset('catstagram', {
   "version": packageDetails.version,
   "developer": packageDetails.author
@@ -42,9 +44,8 @@ router.get("/users/all", function(request, response) {
 });
 
 router.post("/users", function(request, response) {
-  let user = new User(rClient);
   if(request.body.email && request.body.username && request.body.password){
-    user.registerUser(request.body.email, request.body.username, request.body.password).then(function(resp){
+    user.registerUser(request.body.email, request.body.username, request.body.password).then(resp => {
       response.json({message: resp});
     });
   }
@@ -54,10 +55,19 @@ router.post("/users", function(request, response) {
 })
 
 router.get("/user/:username", function(request, response) {
-  let user = new User(rClient);
-  user.findUser(request.params.username).then(function(resp) {
+  user.findUser(request.params.username).then(resp => {
     response.json({user: resp});
   });
+});
+
+router.post("/user/login", function(request, response) {
+  if(request.body.username && request.body.password) {
+    user.login(request.body.username, request.body.password).then(resp => {
+      response.json({loggedin: resp, username: request.body.username});
+    });
+  } else {
+    response.json({message: "Please supply username and password", error: 1});
+  }
 });
 
 //Send routers on /api to router

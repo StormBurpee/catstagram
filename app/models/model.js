@@ -9,7 +9,9 @@ class Model {
       this.rClient.hmset(key, model);
     }
 
-    deleteModel() {}
+    deleteModel(key) {
+      
+    }
 
     checkIfModelExists(key) {
       return new Promise((resolve, reject) => {
